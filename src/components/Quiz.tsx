@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Quiz.css';
 import questions from '../mocks/judo.json';
+import { Link } from 'react-router-dom';
 
 type FlashCardItem = {
   question: string;
@@ -71,7 +72,7 @@ const Quiz = () => {
   return (
     <div className="quiz-wrapper">
       <div className="quiz-container">
-        <a className='link' href="/">Ir para os cards</a>
+        <Link to="/" className="link">Ir para os cards</Link>
         {answering ? (
           <>
             <header className="quiz-header">

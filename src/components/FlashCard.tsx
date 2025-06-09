@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './FlashCard.css';
 import questions from '../mocks/judo.json';
+import { Link } from 'react-router-dom';
 
 type FlashCardItem = {
   question: string;
@@ -60,7 +61,7 @@ const FlashCard = () => {
       </div>
       <button className="next-btn" onClick={next}>Próximo</button>
 
-      <a className='link' href="/quiz">IR PARA O TESTE</a>
+      <Link to="/quiz" className="link">Ir para o teste</Link>
     </div>
   );
 };
