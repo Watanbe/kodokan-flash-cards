@@ -15,7 +15,6 @@ type QuizAnswer = {
 const mockCards: FlashCardItem[] = questions;
 
 const Quiz = () => {
-  const [usedIndex, setUsedIndex] = useState<number[]>([]);
   const [currentCards, setCurrentCards] = useState<FlashCardItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
@@ -40,7 +39,6 @@ const Quiz = () => {
     const newIndexes = [...otherIndexes, currentIndex];
     const shuffledIndexes = [...newIndexes].sort(() => Math.random() - 0.5);
 
-    setUsedIndex(newIndexes);
     const newCards = shuffledIndexes.map(index => mockCards[index]);
     setCurrentCards(newCards);
   };
