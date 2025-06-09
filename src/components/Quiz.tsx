@@ -71,71 +71,66 @@ const Quiz = () => {
   };
 
   return (
-    <div className="card-container">
-      { answering ? (
-        <>
-          <div className="quiz-header">
-            <h2>Quiz de Judo</h2>
-            <p>Responda as perguntas abaixo:</p>
-          </div>
-          <div className="card">
-            <div className="front">
-              {card.question}
-            </div>
-          </div>
+    <div className="quiz-wrapper">
+      <div className="quiz-container">
+        <a className='link' href="/">Ir para os cards</a>
+        {answering ? (
+          <>
+            <header className="quiz-header">
+              <h1>Quiz de Judô</h1>
+              <p>Selecione a resposta correta:</p>
+            </header>
 
-          <div className="answers">
-            {currentCards.map((item, idx) => (
-              <div
-                key={idx}
-                className='answer'
-                onClick={handleAnswerClick(item.answer)}
-              >
-                {item.answer}
-              </div>
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          <a className='link' href="/">IR PARA OS CARDS</a>
-          <div className="quiz-header">
-            <h2>Quiz Finalizado</h2>
-          </div>
-          <div className="quiz-score">
-            Você acertou {correctAnswers} de {mockCards.length} perguntas.
-          </div>
-          <div className="quiz-restart">
-            <p>Para responder novamente, clique no botão abaixo.</p>
-            <button onClick={() => {
+            <div className="quiz-card">
+              <p className="quiz-question">{card.question}</p>
+            </div>
+
+            <div className="quiz-options">
+              {currentCards.map((item, idx) => (
+                <button
+                  key={idx}
+                  className="quiz-option"
+                  onClick={handleAnswerClick(item.answer)}
+                >
+                  {item.answer}
+                </button>
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <header className="quiz-header">
+              <h1>Resultado</h1>
+              <p>Você acertou {correctAnswers} de {mockCards.length} perguntas.</p>
+            </header>
+
+            <button className="quiz-restart-btn" onClick={() => {
               setCurrentIndex(0);
               setCorrectAnswers(0);
               setQuizAnswers([]);
               setAnswering(true);
-            }}>Reiniciar Quiz</button>
-          </div>
-          <div className="quiz-results">
-            {quizAnswers.map((item, idx) => (
-              <div key={idx} className={`quiz-result ${item.wrong ? 'incorrect' : 'correct'}`}>
-                <div className="quiz-result-question">
-                  <strong>Questão:</strong> {item.correct.question}
+            }}>
+              Tentar novamente
+            </button>
+
+            <div className="quiz-results">
+              {quizAnswers.map((item, idx) => (
+                <div key={idx} className={`quiz-result ${item.wrong ? 'wrong' : 'correct'}`}>
+                  <strong>Q{idx + 1}: {item.correct.question}</strong>
+                  {item.wrong ? (
+                    <>
+                      <span>❌ Resposta Errada: <em>{item.wrong.answer}</em></span>
+                      <span>✅ Correta: <strong>{item.correct.answer}</strong></span>
+                    </>
+                  ) : (
+                    <span>✅ Resposta correta: <strong>{item.correct.answer}</strong></span>
+                  )}
                 </div>
-                {item.wrong ? (
-                  <div>
-                    <p><strong>Resposta Correta:</strong> {item.correct.answer}</p>
-                    <p><strong>Resposta Errada:</strong> {item.wrong.answer}</p>
-                  </div>
-                ) : (
-                  <div>
-                    <p><strong>Resposta Correta!</strong></p>
-                    <p>{item.correct.answer}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

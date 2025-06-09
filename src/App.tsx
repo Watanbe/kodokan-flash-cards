@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Index from './pages/Index';
 import QuizPage from './pages/QuizPage';
+import './App.css';
 
 const App = () => {
   return (
