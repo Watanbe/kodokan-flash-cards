@@ -70,3 +70,13 @@
   background-color: white;
   color: #050505
 }
+
+.link {
+  text-decoration: none;
+  color: #f0f0f0;
+  font-weight: bold;
+  margin-top: 50px;
+}
+.link:hover {
+  color: #050505;
+}

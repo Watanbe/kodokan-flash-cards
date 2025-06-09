@@ -59,6 +59,8 @@ const FlashCard = () => {
         </div>
       </div>
       <button className="next-btn" onClick={next}>Próximo</button>
+
+      <a className='link' href="/quiz">IR PARA O TESTE</a>
     </div>
   );
 };
